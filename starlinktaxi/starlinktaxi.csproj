@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70D7E5D0-F031-486E-B0A9-54C5F6C085DD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>starlinktaxi</RootNamespace>
+    <AssemblyName>starlinktaxi</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="game\level\CollidableLevelElement.cs" />
+    <Compile Include="game\level\CollideSide.cs" />
+    <Compile Include="game\level\element\Dock.cs" />
+    <Compile Include="game\level\element\Gate.cs" />
+    <Compile Include="game\level\element\Spaceman.cs" />
+    <Compile Include="game\level\ICollidable.cs" />
+    <Compile Include="game\level\Level.cs" />
+    <Compile Include="game\level\LevelElement.cs" />
+    <Compile Include="game\level\IMissionElement.cs" />
+    <Compile Include="game\level\ISpawnable.cs" />
+    <Compile Include="resource\level\Level1.cs" />
+    <Compile Include="util\Bindable.cs" />
+    <Compile Include="game\GameHandler.cs" />
+    <Compile Include="game\Spaceship.cs" />
+    <Compile Include="util\converter\PlaytimeConverter.cs" />
+    <Compile Include="util\converter\VisibilityConverter.cs" />
+    <Compile Include="util\GameUtil.cs" />
+    <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Resource Include="resource\level\level1\Resource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="resource\Space Comics.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\staxitext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\spaceship.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\spaceship_flame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\spaceship_cursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\planet\earth.png" />
+    <Resource Include="resource\planet\jupiter.png" />
+    <Resource Include="resource\planet\mars.png" />
+    <Resource Include="resource\planet\menu_bg.jpg" />
+    <Resource Include="resource\planet\mercury.png" />
+    <Resource Include="resource\planet\neptune.png" />
+    <Resource Include="resource\planet\saturn.png" />
+    <Resource Include="resource\planet\sun.png" />
+    <Resource Include="resource\planet\uranus.png" />
+    <Resource Include="resource\planet\venus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\asteroide.png" />
+    <Resource Include="resource\blackhole.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="resource\level\level1\texture\" />
+    <Folder Include="resource\spaceship\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\spaceman.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
