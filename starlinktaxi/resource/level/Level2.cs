@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace starlinktaxi.resource.level
 {
-    class Level1 : Level
+    class Level2 : Level
     {
-        public Level1() : base("level1")
+
+        public Level2() : base("level2")
         {
-            Title = "FÖLD";
-            Gravity = 1.0;
-            Spawnpoint = Elements.ElementAt(0);
+            Title = "HOLD";
+            Gravity = 0.5;
+            Spawnpoint = Elements.ElementAt(2);
         }
+
     }
 }

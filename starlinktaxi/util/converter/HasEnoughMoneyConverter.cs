@@ -8,18 +8,11 @@ using System.Windows.Data;
 
 namespace starlinktaxi.util.converter
 {
-    class VisibilityConverter : IValueConverter
+    class HasEnoughMoneyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool visible = (bool)value;
-
-            if(parameter != null && bool.Parse((string) parameter))
-            {
-                visible = !visible;
-            }
-
-            return visible ? "Visible" : "Hidden";
+            return ((double)value) >= int.Parse((string)parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

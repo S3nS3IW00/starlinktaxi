@@ -7,9 +7,8 @@ using System.Windows;
 
 namespace starlinktaxi.game.level.element
 {
-    public class Gate : CollidableLevelElement, IMissionElement
+    public class Gate : CollidableLevelElement
     {
-
 
         public Gate(FrameworkElement root) : base(root)
         {

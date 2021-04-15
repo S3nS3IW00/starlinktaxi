@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="starlinktaxi.game.GameHandler">
+    <Position X="0.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAEQAIAkUUyAIjEAIEEIAABOAAKMCBCgLAg4BAAcMMI=</HashCode>
+      <FileName>game\GameHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="starlinktaxi.util.Bindable">
+    <Position X="4.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>util\Bindable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="starlinktaxi.Spaceship">
+    <Position X="11" Y="0.5" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="starlinktaxi.util.Bindable" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="1.25" />
+        <Point X="11" Y="1.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAgAAMAAAADAAACAYAAAghgABCIYAg=</HashCode>
+      <FileName>game\Spaceship.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="starlinktaxi.game.level.Level">
+    <Position X="6.5" Y="2.75" Width="4" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>DAAEIAAAQCAIAGAIEEAwAAAAACgAEAAAAAQACghIIAA=</HashCode>
+      <FileName>game\level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="starlinktaxi.game.level.LevelResources">
+    <Position X="4.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="starlinktaxi.game.level.LevelElement">
+    <Position X="23" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\level\LevelElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="starlinktaxi.game.level.LevelResource">
+    <Position X="4.25" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>game\level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="starlinktaxi.HealthChangeListener">
+    <Position X="14.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAA=</HashCode>
+      <FileName>game\Spaceship.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="starlinktaxi.OutOfFuelListener" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\Spaceship.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="starlinktaxi.game.level.MissionCompletedListener">
+    <Position X="4.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>game\level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="starlinktaxi.game.level.NewMissionListener">
+    <Position X="4.25" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>game\level\Level.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

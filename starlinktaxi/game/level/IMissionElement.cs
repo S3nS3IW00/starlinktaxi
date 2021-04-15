@@ -28,7 +28,7 @@ namespace starlinktaxi.game.level
 
     public enum MissionType {
 
-        PICKUP, TRANSPORT, GATE
+        PICKUP, TRANSPORT
 
     }
 

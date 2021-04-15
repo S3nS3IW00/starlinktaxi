@@ -11,13 +11,18 @@
     <Window.Resources>
         <c:PlaytimeConverter x:Key="PlaytimeConverter"/>
         <c:VisibilityConverter x:Key="VisibilityConverter"/>
+        <c:HasEnoughMoneyConverter x:Key="HasEnoughMoneyConverter"/>
+        <c:HasEnoughMoneyMultiConverter x:Key="HasEnoughMoneyMultiConverter"/>
+        
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="resource/#Space Comics" />
         </Style>
+        
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="resource/#Space Comics" />
         </Style>
-        <Style x:Key="listitem" TargetType="Label">
+
+        <Style x:Key="listitem" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="resource/#Space Comics" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -37,21 +42,25 @@
 
         <Style x:Key="PauseCursor" TargetType="Grid">
             <Style.Triggers>
-                <Trigger Property="Visibility" Value="Hidden">
-                    <Setter Property="Cursor" Value="None"/>
-                </Trigger>
-                <Trigger Property="Visibility" Value="Visible">
+                <DataTrigger Binding="{Binding IsPaused}" Value="True">
                     <Setter Property="Cursor" Value="{StaticResource Cursor}"/>
-                </Trigger>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsPaused}" Value="False">
+                    <Setter Property="Cursor" Value="None"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
 
     <Window.Background>
-        <ImageBrush ImageSource="resource/bg.jpg" TileMode="FlipY" Stretch="Uniform" AlignmentY="Top" Viewport="0,0,1920,1080" ViewportUnits="Absolute" />
+        <VisualBrush TileMode="Tile" Viewport="0,0,1920,1080">
+            <VisualBrush.Visual>
+                <Image Source="resource/bg.jpg"></Image>
+            </VisualBrush.Visual>
+        </VisualBrush>
     </Window.Background>
 
-    <Grid>
+    <Grid Style="{StaticResource PauseCursor}">
         <StackPanel>
             <Grid Name="HudPanel" Height="100" Background="Black">
                 <Grid.ColumnDefinitions>
@@ -79,31 +88,47 @@
                     </Grid>
                 </StackPanel>
             </Grid>
-            <Border BorderThickness="20" BorderBrush="Black">
-                <Grid>
-                    <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentLevel.Root}"/>
-                    <Canvas>
-                        <Image Source="{Binding Spaceship.Model}" Width="100" Canvas.Left="{Binding Spaceship.X}" Canvas.Top="{Binding Spaceship.Y}">
-                            <Image.RenderTransform>
-                                <ScaleTransform ScaleX="{Binding Spaceship.ScaleX}"/>
-                            </Image.RenderTransform>
-                        </Image>
-                    </Canvas>
+            <Grid>
+                <Border BorderThickness="20" BorderBrush="Black">
+                    <Grid>
+                        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentLevel.Root}"/>
+                        <Canvas>
+                            <Image Source="{Binding Spaceship.Model}" Width="100" Canvas.Left="{Binding Spaceship.X}" Canvas.Top="{Binding Spaceship.Y}">
+                                <Image.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding Spaceship.ScaleX}"/>
+                                </Image.RenderTransform>
+                            </Image>
+                        </Canvas>
+                    </Grid>
+                </Border>
+                <Grid Visibility="{Binding IsPaused, Converter={StaticResource VisibilityConverter}}" Background="Black" Opacity="0.9">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <TextBlock Name="PauseTitle" Text="{Binding PauseTitle}" TextWrapping="WrapWithOverflow" Foreground="White" FontSize="30" Margin="0,20,0,0"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,300" Visibility="{Binding IsGateMenu, Converter={StaticResource VisibilityConverter}}">
+                        <TextBlock Name="NextLevel" Style="{StaticResource listitem}" Text="{Binding NewLevelPrice, StringFormat=ÁTLÉPÉS - ${0}}" HorizontalAlignment="Center" Foreground="White" FontSize="20">
+                            <TextBlock.IsEnabled>
+                                <MultiBinding Converter="{StaticResource HasEnoughMoneyMultiConverter}">
+                                    <Binding Path="Money"/>
+                                    <Binding Path="NewLevelPrice"/>
+                                </MultiBinding>
+                            </TextBlock.IsEnabled>
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,300" Visibility="{Binding IsShopping, Converter={StaticResource VisibilityConverter}}">
+                        <TextBlock Name="BuyFix" Style="{StaticResource listitem}" Text="JAVÍTÁS(5%) - $1" IsEnabled="{Binding Money, Converter={StaticResource HasEnoughMoneyConverter}, ConverterParameter=1}" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <TextBlock Name="BuyFuel" Style="{StaticResource listitem}" Text="ÜZEMANYAG(5%) - $2" IsEnabled="{Binding Money, Converter={StaticResource HasEnoughMoneyConverter}, ConverterParameter=2}" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Name="Continue" Style="{StaticResource listitem}" Text="FOLYTATÁS" Visibility="{Binding CanTogglePause, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <TextBlock Name="Endgame" Style="{StaticResource listitem}" Text="KILÉPÉS A FÖMENÜBE" Visibility="{Binding ShowExit, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </StackPanel>
                 </Grid>
-            </Border>
+            </Grid>
         </StackPanel>
-        <Grid Style="{StaticResource PauseCursor}" Visibility="{Binding IsPaused, Converter={StaticResource VisibilityConverter}}" Background="Black" Opacity="0.9" Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}" Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock Name="PauseTitle" Text="{Binding PauseTitle}" TextWrapping="WrapWithOverflow" Foreground="White" FontSize="30" Margin="0,20,0,0"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label Name="Continue" Style="{StaticResource listitem}" Content="FOLYTATÁS" Visibility="{Binding CanTogglePause, Converter={StaticResource VisibilityConverter}}" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
-                <Label Name="Endgame" Style="{StaticResource listitem}" Content="KILÉPÉS A FÖMENÜBE" HorizontalAlignment="Center" Foreground="White" FontSize="20"/>
-            </StackPanel>
-        </Grid>
         <Grid Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}" Background="Black" Opacity="1.0" Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}}" Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label Name="Loading" Content="BETÖLTÉS..." Foreground="White" FontSize="35"/>
+                <TextBlock Name="Loading" Text="BETÖLTÉS..." Foreground="White" FontSize="35"/>
             </StackPanel>
         </Grid>
     </Grid>

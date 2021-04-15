@@ -1,6 +1,4 @@
 ﻿using starlinktaxi.game.level;
-using starlinktaxi.game.level.element;
-using starlinktaxi.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace starlinktaxi.resource.level
 {
-    class Level1 : Level
+    class Level3 : Level
     {
-        public Level1() : base("level1")
+
+        public Level3() : base("level3")
         {
-            Title = "FÖLD";
-            Gravity = 1.0;
+            Title = "MARS";
+            Gravity = 0.7;
             Spawnpoint = Elements.ElementAt(0);
         }
+
     }
 }

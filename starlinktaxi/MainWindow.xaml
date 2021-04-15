@@ -27,9 +27,13 @@
         <Cursor x:Key="Cursor">resource/spaceship_cursor.cur</Cursor>
     </Window.Resources>
 
-    <Grid Name="menu" Cursor="{StaticResource Cursor}">
+    <Grid Name="main" Cursor="{StaticResource Cursor}">
         <Grid.Background>
-            <ImageBrush ImageSource="resource/bg.jpg" TileMode="FlipY" Stretch="Uniform" AlignmentY="Top" Viewport="0,0,1920,1080" ViewportUnits="Absolute" />
+            <VisualBrush TileMode="Tile" Viewport="0,0,1920,1080" ViewportUnits="Absolute">
+                <VisualBrush.Visual>
+                    <Image Source="resource/bg.jpg"></Image>
+                </VisualBrush.Visual>
+            </VisualBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -39,20 +43,34 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="7*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Image Source="resource/staxitext.png" Grid.Column="1"/>
+        <Image Source="resource/staxitext.png" Grid.Column="1" Grid.Row="1"/>
 
-        <Label Name="continue" Style="{StaticResource listitem}" IsEnabled="False" Content="JÁTÉK FOLYTATÁSA" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="2"/>
-        <Label Name="newgame" Style="{StaticResource listitem}" Content="ÚJ JÁTÉK" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="3" />
-        <Label Name="settings" Style="{StaticResource listitem}" IsEnabled="False" Content="BEÁLLÍTÁSOK" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="4"/>
-        <Label Name="about" Style="{StaticResource listitem}" IsEnabled="False" Content="A JÁTÉKÓL" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="5"/>
+        <Grid Name="menubuttons" Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <Label Name="continue" Style="{StaticResource listitem}" IsEnabled="{Binding HasSaveGame}" Content="JÁTÉK FOLYTATÁSA" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="1"/>
+            <Label Name="newgame" Style="{StaticResource listitem}" Content="ÚJ JÁTÉK" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="2" />
+            <Label Name="about" Style="{StaticResource listitem}" Content="A JÁTÉKRÓL" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="3"/>
+        </Grid>
+
+        <Grid Name="aboutpage" Grid.Row="2"  Grid.Column="1" Visibility="Hidden" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock TextWrapping="Wrap" Text="A JÁTÉKRÓL" Grid.Column="0" Grid.Row="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="resource/#Space Comics"/>
+            <TextBlock TextWrapping="Wrap" Text="A JÁTÉK EGY 1984-BEN KIADOTT JÁTÉK, A 'SPACE TAXI' FELÚJÍTOTT VÁLTOZATA. ELÖDJÉVEL SZEMBEN SZEBB MEGJELENÉSSEL ÉS IZGALMASABB JÁTÉKMENETTEL RENDELKEZIK. NEVÉT A FÖ TÉMÁJÁRÓL KAPTA, MÉGHOZZÁ AZ EMBEREK SZÁLLÍTÁSÁBÓL, ILLETVE ANNAK MÓDJÁRÓL, MIVEL A FUVAROZÁST A MEGSZOKOTTÓL ELTÉRÖ HELYEN VÉGEZHETJÜK, NEM MÁSHOL, MINT AZ ÜRBEN, ÉS AZON BELÜL IS A NAPRENDSZER ÉGITESTJEIN." Grid.Column="0" Grid.Row="1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="resource/#Space Comics"/>
+        </Grid>
 
         <Image Name="exit" Source="resource/exit.png" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">
             <Image.Style>

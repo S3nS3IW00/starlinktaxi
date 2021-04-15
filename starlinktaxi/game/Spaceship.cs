@@ -37,7 +37,7 @@ namespace starlinktaxi
             set
             {
                 double from = health;
-                double to = value < 0 ? 0 : value;
+                double to = value < 0 ? 0 : value > 100 ? 100 : value;
                 health = to;
                 ControlPropertyChanged();
                 HealthChanged?.Invoke(from, to);
@@ -48,7 +48,7 @@ namespace starlinktaxi
             get => fuel;
             set
             {
-                fuel = value < 0 ? 0 : value;
+                fuel = value < 0 ? 0 : value > 100 ? 100 : value;
                 ControlPropertyChanged();
                 if(fuel == 0)
                 {
@@ -57,8 +57,8 @@ namespace starlinktaxi
             }
         }
 
-        public Point Position { get => new Point(X - (ScaleX == -1 ? 100 : 0), Y); }
-        public double SizeX => 100;
+        public Point Position { get => new Point(X - (ScaleX == -1 ? 85 : 0), Y); }
+        public double SizeX => 100 - 15;
         public double SizeY => 20;
 
         public void Spawn(LevelElement element)

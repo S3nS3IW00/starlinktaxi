@@ -39,18 +39,51 @@ namespace starlinktaxi
             PreviewKeyUp += handler.OnKeyUp;
         }
 
+        public void New()
+        {
+            handler.DeleteSave();
+            handler.NextLevel();
+        }
+
+        public void Load()
+        {
+            handler.InitFromSave();
+        }
+
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.Source is Label)
+            if (e.Source is TextBlock)
             {
-                Label label = e.Source as Label;
+                TextBlock label = e.Source as TextBlock;
 
                 if (label == Endgame)
                 {
+                    handler.SaveGame();
                     Close();
                 } else if(label == Continue)
                 {
                     handler.SetPause(false);
+                } else if(label == BuyFix)
+                {
+                    if (handler.Spaceship.Health < 100)
+                    {
+                        handler.Money -= 1;
+                        handler.Spaceship.Health += 5;
+                    }
+                }
+                else if (label == BuyFuel)
+                {
+                    if (handler.Spaceship.Fuel < 100)
+                    {
+                        handler.Money -= 2;
+                        handler.Spaceship.Fuel += 5;
+                    }
+                } else if (label == NextLevel)
+                {
+                    handler.CompletedLevelCount++;
+                    handler.Money -= handler.NewLevelPrice;
+                    handler.SetPause(false);
+                    handler.NextLevel();
                 }
             }
         }

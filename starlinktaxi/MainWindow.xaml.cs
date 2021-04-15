@@ -22,11 +22,26 @@ namespace starlinktaxi
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Grid currentContent;
+
+        public static MainController MainController { get; } = new MainController();        
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = MainController;
 
-            menu.MouseLeftButtonDown += OnLeftMouseDown;
+            currentContent = menubuttons;
+            MainController.CheckSaveGame();
+            main.MouseLeftButtonDown += OnLeftMouseDown;
+        }
+
+        private void ChangeContent(Grid to)
+        {
+            currentContent.Visibility = Visibility.Hidden;
+            to.Visibility = Visibility.Visible;
+            currentContent = to;
         }
 
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
@@ -39,15 +54,37 @@ namespace starlinktaxi
                 {
                     Game game = new Game();
                     game.Show();
+                    game.New();
+                    game.Closing += new CancelEventHandler(delegate (Object o, CancelEventArgs a)
+                    {
+                        Show();
+                    });
+                    Hide();
+                } 
+                else if (label == @continue)
+                {
+                    Game game = new Game();
+                    game.Show();
+                    game.Load();
                     game.Closing += new CancelEventHandler(delegate (Object o, CancelEventArgs a)
                     {
                         Show();
                     });
                     Hide();
                 }
+                else if (label == about)
+                {
+                    ChangeContent(aboutpage);
+                }
             } else if(e.Source is Image && (e.Source as Image) == exit)
             {
-                App.Current.Shutdown();
+                if (currentContent == menubuttons)
+                {
+                    App.Current.Shutdown();
+                } else
+                {
+                    ChangeContent(menubuttons);
+                }
             }
         }
     }

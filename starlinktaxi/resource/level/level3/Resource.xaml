@@ -7,15 +7,17 @@
     </Canvas>
 
     <Canvas Name="Collidable">
-        <Rectangle Fill="Yellow" Width="30" Height="10" Canvas.Left="20" Canvas.Top="30"/>
-        <Rectangle Fill="Yellow" Width="20" Height="10" Canvas.Left="25" Canvas.Top="60"/>
-        <Rectangle Fill="Yellow" Width="5" Height="20" Canvas.Left="10" Canvas.Top="50"/>
-        <Rectangle Fill="Yellow" Width="10" Height="15" Canvas.Left="65" Canvas.Top="35"/>
-        <Rectangle Fill="Yellow" Width="15" Height="10" Canvas.Left="75" Canvas.Top="40"/>
-        <Rectangle Fill="Yellow" Width="5" Height="20" Canvas.Left="85" Canvas.Top="50"/>
-        <Rectangle Fill="Yellow" Width="5" Height="5" Canvas.Left="70" Canvas.Top="60"/>
-        <Rectangle Fill="Yellow" Width="15" Height="5" Canvas.Left="70" Canvas.Top="65"/>
-        <Rectangle Fill="Yellow" Width="5" Height="10" Canvas.Left="65" Canvas.Top="60"/>
+        <Rectangle Fill="Yellow" Width="10" Height="5" Canvas.Left="10" Canvas.Top="15"/>
+        <Rectangle Fill="Yellow" Width="40" Height="5" Canvas.Left="30" Canvas.Top="15"/>
+        <Rectangle Fill="Yellow" Width="10" Height="5" Canvas.Left="80" Canvas.Top="15"/>
+        <Rectangle Fill="Yellow" Width="10" Height="25" Canvas.Left="10" Canvas.Top="20"/>
+        <Rectangle Fill="Yellow" Width="10" Height="25" Canvas.Left="10" Canvas.Top="55"/>
+        <Rectangle Fill="Yellow" Width="10" Height="25" Canvas.Left="80" Canvas.Top="20"/>
+        <Rectangle Fill="Yellow" Width="10" Height="25" Canvas.Left="80" Canvas.Top="55"/>
+        <Rectangle Fill="Yellow" Width="40" Height="5" Canvas.Left="30" Canvas.Top="75"/>
+        <Rectangle Fill="Yellow" Width="10" Height="40" Canvas.Left="60" Canvas.Top="35"/>
+        <Rectangle Fill="Yellow" Width="20" Height="5" Canvas.Left="30" Canvas.Top="35"/>
+        <Rectangle Fill="Yellow" Width="10" Height="20" Canvas.Left="30" Canvas.Top="40"/>
     </Canvas>
 
     <Canvas Name="Docks">
@@ -32,19 +34,19 @@
                 </Style>
             </ResourceDictionary>
         </Canvas.Resources>
-        <Grid Width="10" Height="10" Canvas.Left="10" Canvas.Top="30">
+        <Grid Width="10" Height="5" Canvas.Left="20" Canvas.Top="15">
             <Rectangle/>
             <TextBlock Text="1"/>
         </Grid>
-        <Grid Width="10" Height="10" Canvas.Left="55" Canvas.Top="60">
+        <Grid Width="10" Height="5" Canvas.Left="70" Canvas.Top="15">
             <Rectangle/>
             <TextBlock Text="2"/>
         </Grid>
-        <Grid Width="10" Height="10" Canvas.Left="15" Canvas.Top="60">
+        <Grid Width="10" Height="5" Canvas.Left="50" Canvas.Top="35">
             <Rectangle/>
             <TextBlock Text="3"/>
         </Grid>
-        <Grid Width="10" Height="10" Canvas.Left="65" Canvas.Top="25">
+        <Grid Width="10" Height="5" Canvas.Left="20" Canvas.Top="75">
             <Rectangle/>
             <TextBlock Text="4"/>
         </Grid>
@@ -66,7 +68,7 @@
                 </Style>
             </ResourceDictionary>
         </Canvas.Resources>
-        <Grid Width="10" Height="5" Canvas.Left="75" Canvas.Top="60">
+        <Grid Width="10" Height="5" Canvas.Left="40" Canvas.Top="55">
             <Rectangle/>
             <TextBlock/>
         </Grid>
